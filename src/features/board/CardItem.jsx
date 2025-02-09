@@ -33,6 +33,24 @@ const StyledInput = styled.input`
   width: 100%;
 `;
 
+const tasks = [
+  {
+    id: 1,
+    name: "Task 1",
+    isCompleted: false,
+  },
+  {
+    id: 2,
+    name: "Task 2",
+    isCompleted: false,
+  },
+  {
+    id: 3,
+    name: "Task 3",
+    isCompleted: false,
+  },
+];
+
 function CardItem() {
   const [cardName, setCardName] = useState("Click to change card name");
   const [isEditingCardName, setIsEditingCardName] = useState(false);
@@ -42,6 +60,9 @@ function CardItem() {
       setIsEditingCardName(false);
     }
   }
+
+  const [newTasks, setNewTasks] = useState(false);
+  function handleAddTask() {}
 
   return (
     <StyledCardItem>
@@ -68,12 +89,18 @@ function CardItem() {
           </Button>
         </div>
       </CardHeader>
+
       <CardBody>
-        <Task />
+        {tasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
       </CardBody>
+
+      {newTasks && <NewTaskForm />}
+
       <CardFooter>
-        <Button>
-          <FaPlus /> Add a card
+        <Button onClick={handleAddTask}>
+          <FaPlus /> Add a task
         </Button>
       </CardFooter>
     </StyledCardItem>
