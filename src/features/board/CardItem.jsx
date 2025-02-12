@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { RiCollapseDiagonal2Line } from "react-icons/ri";
 import { SlOptionsVertical } from "react-icons/sl";
 import Task from "./Task";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaRegCircle } from "react-icons/fa";
 import Button from "../../ui/Button";
 
 const StyledCardItem = styled.div`
@@ -33,6 +33,10 @@ const StyledInput = styled.input`
   width: 100%;
 `;
 
+const NewTaskForm = styled.input`
+  all: unset;
+`;
+
 const tasks = [
   {
     id: 1,
@@ -58,11 +62,23 @@ function CardItem() {
   function handleKeyDown(e) {
     if (e.key === "Enter") {
       setIsEditingCardName(false);
+      setIsAddingTask(false);
+    }
+    if (isAddingTask && e.key === "Enter") {
+      handleAddTask(newTask);
     }
   }
 
-  const [newTasks, setNewTasks] = useState(false);
-  function handleAddTask() {}
+  const [isAddingTask, setIsAddingTask] = useState(false);
+  const [newTask, setNewTask] = useState("");
+
+  function handleAddTask(task) {
+    tasks.push({
+      id: Math.random(),
+      name: task,
+      isCompleted: false,
+    });
+  }
 
   return (
     <StyledCardItem>
@@ -94,12 +110,28 @@ function CardItem() {
         {tasks.map((task) => (
           <Task key={task.id} task={task} />
         ))}
+        {isAddingTask && (
+          <>
+            <FaRegCircle />{" "}
+            <NewTaskForm
+              type="text"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              onKeyDown={(e) => {
+                handleKeyDown(e, newTask);
+              }}
+              onBlur={() => {
+                handleAddTask(newTask);
+                setIsAddingTask(false);
+              }}
+              autoFocus
+            />
+          </>
+        )}
       </CardBody>
 
-      {newTasks && <NewTaskForm />}
-
       <CardFooter>
-        <Button onClick={handleAddTask}>
+        <Button onClick={() => setIsAddingTask(true)}>
           <FaPlus /> Add a task
         </Button>
       </CardFooter>
