@@ -9,9 +9,13 @@ const StyledTask = styled.div`
 function Task({ task }) {
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
 
+  function handleChangeTask() {
+    setIsCompleted((isCompleted) => !isCompleted)
+  }
+
   return (
-    <StyledTask onClick={() => setIsCompleted((isCompleted) => !isCompleted)}>
-      {isCompleted ? <FaRegCheckCircle /> : <FaRegCircle />} {task.name}{" "}
+    <StyledTask>
+      {isCompleted ? <FaRegCheckCircle onClick={handleChangeTask}/> : <FaRegCircle onClick={handleChangeTask}/>} {task.name}{" "}
     </StyledTask>
   );
 }
