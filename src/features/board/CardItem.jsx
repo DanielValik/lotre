@@ -5,6 +5,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import Task from "./Task";
 import { FaPlus, FaRegCircle } from "react-icons/fa";
 import Button from "../../ui/Button";
+import ControlledInput from "../../ui/ControlledInput";
 
 const StyledCardItem = styled.div`
   background-color: #e1e1e1;
@@ -26,11 +27,6 @@ const CardBody = styled.div`
 
 const CardFooter = styled.div`
   padding: 10px;
-`;
-
-const StyledInput = styled.input`
-  all: unset;
-  width: 100%;
 `;
 
 const NewTaskForm = styled.input`
@@ -84,13 +80,11 @@ function CardItem() {
     <StyledCardItem>
       <CardHeader>
         {isEditingCardName ? (
-          <StyledInput
-            type="text"
+          <ControlledInput
             value={cardName}
             onChange={(e) => setCardName(e.target.value)}
             onBlur={() => setIsEditingCardName(false)}
             onKeyDown={(e) => handleKeyDown(e)}
-            autoFocus
           />
         ) : (
           <span onClick={() => setIsEditingCardName(true)}>{cardName}</span>
