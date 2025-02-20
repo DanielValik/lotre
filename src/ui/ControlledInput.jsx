@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const StyledInput = styled.input`
   all: unset;
-  width: 100%;
   border: none;
   display: inline-block;
 `;
