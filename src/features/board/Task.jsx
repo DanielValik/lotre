@@ -52,20 +52,22 @@ function Task({ task }) {
               onBlur={() => setIsEditing(false)}
               onKeyDown={(e) => handleKeyDown(e)}
             />
-            <Button onClick={() => setIsEditing(false)}>Save</Button>
           </>
         ) : (
           taskName
         )}
       </div>
 
-      {isHovered && !isEditing && (
-        <FaEdit
-          onClick={() => {
-            setIsEditing(true);
-          }}
-        />
-      )}
+      <div>
+        {isHovered && !isEditing && (
+          <FaEdit
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          />
+        )}
+        {isEditing && <Button onClick={() => setIsEditing(false)}>Save</Button>}
+      </div>
     </StyledTask>
   );
 }

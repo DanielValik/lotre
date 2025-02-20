@@ -7,7 +7,7 @@ import { FaPlus, FaRegCircle } from "react-icons/fa";
 import Button from "../../ui/Button";
 import ControlledInput from "../../ui/ControlledInput";
 
-const StyledCardItem = styled.div`
+const StyledCard = styled.div`
   background-color: #e1e1e1;
   border-radius: 5px;
   width: 400px;
@@ -33,6 +33,24 @@ const NewTaskForm = styled.input`
   all: unset;
 `;
 
+const Wrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const MinimizedCard = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: rotate(90deg);
+  transform-origin: left top;
+  background: #e1e1e1;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  display: inline-block;
+`;
+
 const tasks = [
   {
     id: 1,
@@ -51,7 +69,7 @@ const tasks = [
   },
 ];
 
-function CardItem() {
+function Card() {
   const [cardName, setCardName] = useState("Click to change card name");
   const [isEditingCardName, setIsEditingCardName] = useState(false);
 
@@ -76,8 +94,22 @@ function CardItem() {
     });
   }
 
-  return (
-    <StyledCardItem>
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  return isMinimized ? (
+    <Wrapper>
+      <MinimizedCard>
+        <Button
+          onClick={() => setIsMinimized(false)}
+          additionalStyle={{ marginRight: "10px" }}
+        >
+          <RiCollapseDiagonal2Line />
+        </Button>
+        <span>{cardName}</span>
+      </MinimizedCard>
+    </Wrapper>
+  ) : (
+    <StyledCard>
       <CardHeader>
         {isEditingCardName ? (
           <ControlledInput
@@ -91,7 +123,7 @@ function CardItem() {
         )}
 
         <div>
-          <Button>
+          <Button onClick={() => setIsMinimized(true)}>
             <RiCollapseDiagonal2Line />
           </Button>
           <Button>
@@ -129,8 +161,8 @@ function CardItem() {
           <FaPlus /> Add a task
         </Button>
       </CardFooter>
-    </StyledCardItem>
+    </StyledCard>
   );
 }
 
-export default CardItem;
+export default Card;

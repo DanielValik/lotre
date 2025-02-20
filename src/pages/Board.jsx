@@ -1,10 +1,10 @@
-import CardItem from "../features/board/CardItem";
+import Card from "../features/board/Card";
 
 function Board() {
   return (
-    <>
-      <CardItem />
-    </>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Card />
+    </div>
   );
 }
 
