@@ -1,8 +1,8 @@
-import Card from "../features/board/Card";
+import Card from "../features/card/Card";
 
 function Board() {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div>
       <Card />
     </div>
   );

@@ -6,9 +6,10 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
 
   background: var(--background);
+  transition: background 0.3s ease, transform 0.2s ease;
   color: var(--text-primary);
 
   &:hover {

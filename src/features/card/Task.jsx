@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ControlledInput from "../../ui/ControlledInput";
 import Button from "../../ui/Button";
 import useDarkenBackground from "../../hooks/useDarkBackground";
+import OptionsList from "./OptionsList";
 
 const StyledTask = styled.div`
   display: flex;
@@ -23,19 +24,10 @@ const Wrapper = styled.div`
 const FocusedTask = styled.div`
   position: fixed;
   padding: 5px;
-  border: 3px solid var(--hover);
+  border: 1px solid var(--hover);
   background-color: var(--background);
   border-radius: 10px;
   z-index: 1000;
-`;
-
-const OptionsList = styled.div`
-  position: absolute;
-  left: 102%;
-  top: 0%;
-
-  display: flex;
-  flex-direction: column;
 `;
 
 const additionalStylesButton = {
@@ -94,21 +86,7 @@ function Task({ task }) {
               Save
             </Button>
 
-            <OptionsList>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-              <Button additionalStyle={{ marginBottom: "3px" }}>Test</Button>
-            </OptionsList>
+            <OptionsList />
           </FocusedTask>
         </Wrapper>
       ) : (
