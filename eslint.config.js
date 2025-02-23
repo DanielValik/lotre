@@ -1,23 +1,36 @@
-import reactPlugin from "eslint-plugin-react";
+import { defineConfig } from "eslint-define-config";
+import eslintPluginReact from "eslint-plugin-react";
 
-export default [
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: "latest",
+export default defineConfig({
+  languageOptions: {
+    parserOptions: {
+      ecmaVersion: 2021,
       sourceType: "module",
-    },
-    settings: {
-      react: {
-        version: "detect",
+      ecmaFeatures: {
+        jsx: true,
       },
     },
-    plugins: {
-      react: reactPlugin,
-    },
-    rules: {
-      "react/react-in-jsx-scope": "off",
-      "react/jsx-no-target-blank": ["error", { allowReferrer: true }],
+    globals: {
+      window: "readonly",
+      document: "readonly",
+      console: "readonly",
     },
   },
-];
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  plugins: {
+    react: eslintPluginReact,
+  },
+  rules: {
+    "no-console": "warn",
+    "no-unused-vars": [
+      "warn",
+      { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+  },
+});
