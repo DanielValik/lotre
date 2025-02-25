@@ -22,48 +22,46 @@ const StyledOptionsList = styled.div`
   flex-direction: column;
 `;
 
+const IconWrapper = styled.div`
+  display: inline-block;
+  margin-right: 10px;
+`;
+
+const additionalStylesButton = {
+  display: "flex",
+  marginBottom: "5px",
+};
+
+const options = [
+  { icon: <FaIdCard />, label: "Open Task", onClick: handleClick },
+  { icon: <FaEdit />, label: "Edit labels", onClick: handleClick },
+  { icon: <FaUser />, label: "Change members", onClick: handleClick },
+  { icon: <FaRegImage />, label: "Change cover", onClick: handleClick },
+  { icon: <IoTime />, label: "Edit dates", onClick: handleClick },
+  { icon: <FaArrowRight />, label: "Move", onClick: handleClick },
+  { icon: <FaCopy />, label: "Copy task", onClick: handleClick },
+  { icon: <FaLink />, label: "Copy link", onClick: handleClick },
+  { icon: <GiMirrorMirror />, label: "Mirror", onClick: handleClick },
+  { icon: <FaArchive />, label: "Archive", onClick: handleClick },
+];
+
+function handleClick() {
+  console.log("Button clicked");
+}
+
 function OptionsList() {
   return (
     <StyledOptionsList>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaIdCard style={{ marginRight: "3px" }} />
-        Open Task
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaEdit style={{ marginRight: "3px" }} /> Edit labels
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaUser style={{ marginRight: "3px" }} />
-        Change members
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaRegImage style={{ marginRight: "3px" }} />
-        Change cover
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <IoTime style={{ marginRight: "3px" }} />
-        Edit dates
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaArrowRight style={{ marginRight: "3px" }} />
-        Move
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaCopy style={{ marginRight: "3px" }} />
-        Copy task
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaLink style={{ marginRight: "3px" }} /> Copy link
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        {" "}
-        <GiMirrorMirror style={{ marginRight: "3px" }} />
-        Mirror
-      </Button>
-      <Button additionalStyle={{ marginBottom: "3px" }}>
-        <FaArchive style={{ marginRight: "3px" }} />
-        Archive
-      </Button>
+      {options.map((option) => (
+        <Button
+          additionalStyle={additionalStylesButton}
+          onClick={option.onClick}
+          key={option.label}
+        >
+          <IconWrapper>{option.icon}</IconWrapper>
+          {option.label}
+        </Button>
+      ))}
     </StyledOptionsList>
   );
 }

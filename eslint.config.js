@@ -1,5 +1,6 @@
 import { defineConfig } from "eslint-define-config";
 import eslintPluginReact from "eslint-plugin-react";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 
 export default defineConfig({
   languageOptions: {
@@ -23,6 +24,7 @@ export default defineConfig({
   },
   plugins: {
     react: eslintPluginReact,
+    "react-hooks": eslintPluginReactHooks,
   },
   rules: {
     "no-console": "warn",
@@ -32,5 +34,6 @@ export default defineConfig({
     ],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "warn",
   },
 });

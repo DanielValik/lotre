@@ -18,8 +18,11 @@ function useDarkenBackground(excludeRef) {
   const [isDark, setIsDark] = useState(false);
   const overlayRef = useRef(null);
 
-  const handleClickOutside = useCallback(
+  const handleClickOutsideDB = useCallback(
     (e) => {
+      if (!isDark) return;
+
+      stopPropagation();
       if (excludeRef.current && !excludeRef.current.contains(e.target)) {
         setIsDark(false);
       }
@@ -28,16 +31,14 @@ function useDarkenBackground(excludeRef) {
   );
 
   useEffect(() => {
-    if (isDark) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
+    if (!isDark) return;
+
+    document.addEventListener("mousedown", handleClickOutsideDB);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutsideDB);
     };
-  }, [isDark, handleClickOutside]);
+  }, [isDark, handleClickOutsideDB]);
 
   const DarkenComponent = isDark ? (
     <Overlay isVisible={isDark} ref={overlayRef} />

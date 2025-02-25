@@ -5,7 +5,7 @@ import Task from "./Task";
 import { FaPlus, FaRegCircle } from "react-icons/fa";
 import Button from "../../ui/Button";
 import ControlledInput from "../../ui/ControlledInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const StyledCard = styled.div`
   background-color: #e1e1e1;

@@ -5,6 +5,7 @@ import ControlledInput from "../../ui/ControlledInput";
 import Button from "../../ui/Button";
 import useDarkenBackground from "../../hooks/useDarkBackground";
 import OptionsList from "./OptionsList";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const StyledTask = styled.div`
   display: flex;
@@ -61,6 +62,10 @@ function Task({ task }) {
     setIsDark(true);
   }
 
+  useClickOutside(modalRef, () => {
+    setIsEditing(false);
+  });
+
   useEffect(() => {
     if (!isEditing) setIsDark(false);
   }, [isEditing, setIsDark]);
@@ -75,7 +80,6 @@ function Task({ task }) {
               style={{ position: "relative" }}
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
-              onBlur={() => setIsEditing(false)}
               onKeyDown={(e) => handleKeyDown(e)}
             />
 
