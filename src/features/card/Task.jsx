@@ -6,6 +6,7 @@ import Button from "../../ui/Button";
 import useDarkenBackground from "../../hooks/useDarkBackground";
 import OptionsList from "./OptionsList";
 import useClickOutside from "../../hooks/useClickOutside";
+import Modal from "../../ui/Modal";
 
 const StyledTask = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ function Task({ task }) {
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
   const [isEditing, setIsEditing] = useState(false);
   const [taskName, setTaskName] = useState(task.name);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleChangeTask() {
     setIsCompleted((isCompleted) => !isCompleted);
@@ -90,7 +92,14 @@ function Task({ task }) {
               Save
             </Button>
 
-            <OptionsList />
+            <OptionsList
+              task={task}
+              closeOptionsList={() => {
+                setIsEditing(false);
+                setIsDark(false);
+              }}
+              setIsModalOpen={setIsModalOpen}
+            />
           </FocusedTask>
         </Wrapper>
       ) : (
@@ -113,6 +122,9 @@ function Task({ task }) {
           </div>
         </StyledTask>
       )}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h1>{task.name}</h1>
+      </Modal>
     </>
   );
 }

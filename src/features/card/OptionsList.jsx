@@ -32,37 +32,44 @@ const additionalStylesButton = {
   marginBottom: "5px",
 };
 
-const options = [
-  { icon: <FaIdCard />, label: "Open Task", onClick: handleClick },
-  { icon: <FaEdit />, label: "Edit labels", onClick: handleClick },
-  { icon: <FaUser />, label: "Change members", onClick: handleClick },
-  { icon: <FaRegImage />, label: "Change cover", onClick: handleClick },
-  { icon: <IoTime />, label: "Edit dates", onClick: handleClick },
-  { icon: <FaArrowRight />, label: "Move", onClick: handleClick },
-  { icon: <FaCopy />, label: "Copy task", onClick: handleClick },
-  { icon: <FaLink />, label: "Copy link", onClick: handleClick },
-  { icon: <GiMirrorMirror />, label: "Mirror", onClick: handleClick },
-  { icon: <FaArchive />, label: "Archive", onClick: handleClick },
-];
+function OptionsList({ task, closeOptionsList, setIsModalOpen }) {
+  const options = [
+    { icon: <FaIdCard />, label: "Open Task", onClick: handleOpenTask },
+    { icon: <FaEdit />, label: "Edit labels", onClick: handleClick },
+    { icon: <FaUser />, label: "Change members", onClick: handleClick },
+    { icon: <FaRegImage />, label: "Change cover", onClick: handleClick },
+    { icon: <IoTime />, label: "Edit dates", onClick: handleClick },
+    { icon: <FaArrowRight />, label: "Move", onClick: handleClick },
+    { icon: <FaCopy />, label: "Copy task", onClick: handleClick },
+    { icon: <FaLink />, label: "Copy link", onClick: handleClick },
+    { icon: <GiMirrorMirror />, label: "Mirror", onClick: handleClick },
+    { icon: <FaArchive />, label: "Archive", onClick: handleClick },
+  ];
 
-function handleClick() {
-  console.log("Button clicked");
-}
+  function handleClick() {
+    console.log("Button clicked");
+  }
 
-function OptionsList() {
+  function handleOpenTask() {
+    setIsModalOpen(true);
+    closeOptionsList();
+  }
+
   return (
-    <StyledOptionsList>
-      {options.map((option) => (
-        <Button
-          additionalStyle={additionalStylesButton}
-          onClick={option.onClick}
-          key={option.label}
-        >
-          <IconWrapper>{option.icon}</IconWrapper>
-          {option.label}
-        </Button>
-      ))}
-    </StyledOptionsList>
+    <>
+      <StyledOptionsList>
+        {options.map((option) => (
+          <Button
+            additionalStyle={additionalStylesButton}
+            onClick={option.onClick}
+            key={option.label}
+          >
+            <IconWrapper>{option.icon}</IconWrapper>
+            {option.label}
+          </Button>
+        ))}
+      </StyledOptionsList>
+    </>
   );
 }
 

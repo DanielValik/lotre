@@ -2,7 +2,7 @@ import Card from "../features/card/Card";
 
 function Board() {
   return (
-    <div>
+    <div style={{ padding: "30px" }}>
       <Card />
     </div>
   );
