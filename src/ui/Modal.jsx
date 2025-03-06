@@ -30,7 +30,7 @@ const ModalWrapper = styled.div`
   border-radius: 16px;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 400px;
+  max-width: 700px;
   position: relative;
   animation: ${scaleIn} 0.2s ease-in-out;
 `;

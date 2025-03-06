@@ -7,6 +7,7 @@ import useDarkenBackground from "../../hooks/useDarkBackground";
 import OptionsList from "./OptionsList";
 import useClickOutside from "../../hooks/useClickOutside";
 import Modal from "../../ui/Modal";
+import OpenedTaskModal from "./taskModalMenu/OpenedTaskModal";
 
 const StyledTask = styled.div`
   display: flex;
@@ -38,16 +39,21 @@ const additionalStylesButton = {
   top: "120%",
 };
 
-function Task({ task }) {
+function Task({ task, cardName }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
   const [isEditing, setIsEditing] = useState(false);
   const [taskName, setTaskName] = useState(task.name);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function handleChangeTask() {
+  function handleChangeIsCompleted() {
     setIsCompleted((isCompleted) => !isCompleted);
   }
+
+  useEffect(() => {
+    task.isCompleted = isCompleted;
+    console.log(task.isCompleted);
+  }, [isCompleted, task]);
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
@@ -109,9 +115,15 @@ function Task({ task }) {
         >
           <div>
             {isCompleted ? (
-              <FaRegCheckCircle onClick={handleChangeTask} />
+              <FaRegCheckCircle
+                onClick={handleChangeIsCompleted}
+                style={{ marginRight: "5px" }}
+              />
             ) : (
-              <FaRegCircle onClick={handleChangeTask} />
+              <FaRegCircle
+                onClick={handleChangeIsCompleted}
+                style={{ marginRight: "5px" }}
+              />
             )}
 
             <span>{taskName}</span>
@@ -123,7 +135,12 @@ function Task({ task }) {
         </StyledTask>
       )}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h1>{task.name}</h1>
+        <OpenedTaskModal
+          task={task}
+          cardName={cardName}
+          isCompleted={isCompleted}
+          handleChangeIsCompleted={handleChangeIsCompleted}
+        />
       </Modal>
     </>
   );

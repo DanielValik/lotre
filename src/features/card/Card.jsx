@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { RiCollapseDiagonal2Line } from "react-icons/ri";
 import { SlOptionsVertical } from "react-icons/sl";
-import Task from "./Task";
+import Task from "../task/Task";
 import { FaPlus, FaRegCircle } from "react-icons/fa";
 import Button from "../../ui/Button";
 import ControlledInput from "../../ui/ControlledInput";
 import { useEffect, useState } from "react";
+import { tasks } from "../../fakeData/fakeTasks";
 
 const StyledCard = styled.div`
   background-color: #e1e1e1;
@@ -50,24 +51,6 @@ const MinimizedCard = styled.div`
   white-space: nowrap;
   display: inline-block;
 `;
-
-const tasks = [
-  {
-    id: 1,
-    name: "Task 1",
-    isCompleted: false,
-  },
-  {
-    id: 2,
-    name: "Task 2",
-    isCompleted: false,
-  },
-  {
-    id: 3,
-    name: "Task 3",
-    isCompleted: false,
-  },
-];
 
 function Card() {
   const [cardName, setCardName] = useState("Click to change card name");
@@ -134,7 +117,7 @@ function Card() {
 
       <CardBody>
         {tasks.map((task) => (
-          <Task key={task.id} task={task} />
+          <Task key={task.id} task={task} cardName={cardName} />
         ))}
         {isAddingTask && (
           <>
