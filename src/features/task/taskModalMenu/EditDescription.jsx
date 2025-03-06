@@ -13,6 +13,12 @@ const DescriptionButton = styled.div`
   }
 `;
 
+const DescriptionContent = styled.div`
+  font-size: 13px;
+  padding: 10px;
+  cursor: pointer;
+`;
+
 const InputWrapper = styled.div``;
 
 const Input = styled.input`
@@ -23,25 +29,37 @@ const Input = styled.input`
 
 function EditDescription() {
   const [isAddingDescription, setIsAddingDescription] = useState(false);
-  const [description, setDescription] = useState("s");
+  const [descriptionInput, setDescriptionInput] = useState("");
+  const [description, setDescription] = useState("");
 
-  function handleCancelDescription(params) {
+  function handleSaveDescription() {
     setIsAddingDescription(false);
-    setDescription("");
+    setDescription(descriptionInput);
+  }
+
+  function handleCancelDescription() {
+    setIsAddingDescription(false);
+    description === "" ? setDescription("") : setDescription(description);
   }
 
   return !isAddingDescription ? (
-    <DescriptionButton onClick={() => setIsAddingDescription(true)}>
-      Add a more detailed description...
-    </DescriptionButton>
+    description === "" ? (
+      <DescriptionButton onClick={() => setIsAddingDescription(true)}>
+        Add a more detailed description...
+      </DescriptionButton>
+    ) : (
+      <DescriptionContent onClick={() => setIsAddingDescription(true)}>
+        {description}
+      </DescriptionContent>
+    )
   ) : (
     <InputWrapper>
       <Input
         type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={descriptionInput}
+        onChange={(e) => setDescriptionInput(e.target.value)}
       ></Input>
-      <Button onClick={() => setIsAddingDescription(false)}>Save</Button>
+      <Button onClick={handleSaveDescription}>Save</Button>
       <Button onClick={handleCancelDescription}>Cancel</Button>
     </InputWrapper>
   );

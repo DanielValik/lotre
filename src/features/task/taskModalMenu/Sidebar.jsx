@@ -14,8 +14,8 @@ const Sidebar = styled.div`
 
 const btnAdditionalStyle = {
   fonsSize: "16px",
+  gap: "8px",
   display: "flex",
-  justifyContent: "space-bewtween",
   marginBottom: "5px",
   padding: "10px 30px 10px 20px",
 };

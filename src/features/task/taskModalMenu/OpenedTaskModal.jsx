@@ -1,10 +1,12 @@
-import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
+import { FaRegCheckCircle, FaRegCircle, FaRegEye } from "react-icons/fa";
 import styled from "styled-components";
 import Button from "../../../ui/Button";
-import { CiTextAlignLeft } from "react-icons/ci";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import EditDesctiption from "./EditDescription";
+import { FaListCheck } from "react-icons/fa6";
+import Activity from "./Activity";
+import { LuText } from "react-icons/lu";
 
 const StyledTaskModal = styled.div`
   display: flex;
@@ -27,6 +29,11 @@ const Content = styled.div`
   display: inline-block;
   line-height: 0.7;
 `;
+
+const btnAdditionalStyle = {
+  display: "flex",
+  gap: "8px",
+};
 
 function OpenedTaskModal({
   task,
@@ -63,13 +70,16 @@ function OpenedTaskModal({
         <Row style={{ marginLeft: "50px" }}>
           <Content>
             <p style={{ fontSize: "13px" }}>Notifications</p>
-            <Button additionalStyle={{ display: "block" }}>Watch</Button>
+            <Button additionalStyle={btnAdditionalStyle}>
+              <FaRegEye />
+              Watch
+            </Button>
           </Content>
         </Row>
 
         <Row>
           <Icon>
-            <CiTextAlignLeft />
+            <LuText />
           </Icon>
 
           <Content>
@@ -77,6 +87,16 @@ function OpenedTaskModal({
             <EditDesctiption />
           </Content>
         </Row>
+        <Row>
+          <Icon>
+            <FaListCheck />
+          </Icon>
+
+          <Content>
+            <p>Activity</p>
+          </Content>
+        </Row>
+        <Activity Row={Row} Icon={Icon} Content={Content} />
       </Body>
 
       <Sidebar />
