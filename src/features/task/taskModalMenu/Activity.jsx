@@ -12,14 +12,16 @@ const ActivityInfo = styled.p`
 
 function Activity({ Row, Icon, Content }) {
   return (
-    <Row>
-      <StyledAvatar src="../../../../public/fakeUserAvatar.png" alt="" />
+    <>
+      <Row>
+        <StyledAvatar src="../../../../public/fakeUserAvatar.png" alt="" />
 
-      <Content>
-        <bold>{fakeCurrentUser.username}</bold> do something...
-        <ActivityInfo>1 marca 2025, 4:00 PM</ActivityInfo>
-      </Content>
-    </Row>
+        <Content>
+          <bold>{fakeCurrentUser.username}</bold> do something...
+          <ActivityInfo>1 marca 2025, 4:00 PM</ActivityInfo>
+        </Content>
+      </Row>
+    </>
   );
 }
 

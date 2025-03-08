@@ -52,7 +52,6 @@ function Task({ task, cardName }) {
 
   useEffect(() => {
     task.isCompleted = isCompleted;
-    console.log(task.isCompleted);
   }, [isCompleted, task]);
 
   function handleKeyDown(e) {
