@@ -10,13 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dompurify": "^3.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-router": "^7.1.5",
+    "react-trix": "^0.10.2",
     "styled-components": "^6.1.15",
-    "trix": "^2.1.12",
-    "react-trix": "^0.10.2"
+    "trix": "^2.1.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

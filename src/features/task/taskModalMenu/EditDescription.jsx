@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Button from "../../../ui/Button";
+import TrixInput from "../../../ui/TrixInput";
+import DOMPurify from "dompurify";
 
 const DescriptionButton = styled.div`
   font-size: 13px;
@@ -19,7 +20,11 @@ const DescriptionContent = styled.div`
   cursor: pointer;
 `;
 
-const InputWrapper = styled.div``;
+const InputWrapper = styled.div`
+  max-width: 500px;
+  border: 1px solid var(--border);
+  padding: 5px;
+`;
 
 const Input = styled.input`
   display: block;
@@ -31,6 +36,7 @@ function EditDescription() {
   const [isAddingDescription, setIsAddingDescription] = useState(false);
   const [descriptionInput, setDescriptionInput] = useState("");
   const [description, setDescription] = useState("");
+  console.log(descriptionInput);
 
   function handleSaveDescription() {
     setIsAddingDescription(false);
@@ -49,18 +55,19 @@ function EditDescription() {
       </DescriptionButton>
     ) : (
       <DescriptionContent onClick={() => setIsAddingDescription(true)}>
-        {description}
+        <div
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+        ></div>
       </DescriptionContent>
     )
   ) : (
     <InputWrapper>
-      <Input
-        type="text"
-        value={descriptionInput}
-        onChange={(e) => setDescriptionInput(e.target.value)}
-      ></Input>
-      <Button onClick={handleSaveDescription}>Save</Button>
-      <Button onClick={handleCancelDescription}>Cancel</Button>
+      <TrixInput
+        inputContent={descriptionInput}
+        setInputContent={setDescriptionInput}
+        onSave={handleSaveDescription}
+        onCancel={handleCancelDescription}
+      />
     </InputWrapper>
   );
 }
