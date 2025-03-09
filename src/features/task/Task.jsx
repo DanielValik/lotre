@@ -55,6 +55,10 @@ function Task({ task, cardName }) {
   }, [isCompleted, task]);
 
   function handleKeyDown(e) {
+    e.stopPropagation();
+
+    if (isModalOpen) return;
+
     if (e.key === "Enter") {
       setIsEditing(false);
       setIsDark(false);

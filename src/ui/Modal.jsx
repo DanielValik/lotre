@@ -47,7 +47,7 @@ const CloseButton = styled.button`
 function Modal({ isOpen, onClose, children }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape" || e.key === "Enter") onClose();
+      if (e.key === "Escape") onClose();
     };
 
     if (isOpen) {

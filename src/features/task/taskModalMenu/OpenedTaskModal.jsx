@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../../../ui/Button";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import EditDesctiption from "./EditDescription";
+import Description from "./Description";
 import { FaListCheck } from "react-icons/fa6";
 import Activity from "./Activity";
 import { LuText } from "react-icons/lu";
@@ -27,6 +27,7 @@ const Icon = styled.span`
 
 const Content = styled.div`
   display: inline-block;
+  max-width: 500px;
   line-height: 0.7;
 `;
 
@@ -84,7 +85,7 @@ function OpenedTaskModal({
 
           <Content>
             <p>Description</p>
-            <EditDesctiption />
+            <Description />
           </Content>
         </Row>
         <Row>
