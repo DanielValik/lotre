@@ -2,6 +2,7 @@ import { FaRegEye } from "react-icons/fa";
 import Button from "../../../ui/Button";
 import styled from "styled-components";
 import { CiCirclePlus, CiSquarePlus } from "react-icons/ci";
+import Labels from "../Labels";
 
 const ControlBarWrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const LabelSquare = styled.div`
   width: 40px;
   height: 30px;
   border-radius: 5px;
-  background-color: red;
+  background-color: ${(props) => props.labelColor || "black"};
   margin-right: 5px;
 `;
 
@@ -37,7 +38,7 @@ const plusIconStyle = {
   cursor: "pointer",
 };
 
-function ControlBar() {
+function ControlBar({ task }) {
   return (
     <ControlBarWrapper>
       <div display="flex">
@@ -46,13 +47,19 @@ function ControlBar() {
         <StyledAvatar src="../../../../public/fakeUserAvatar.png" alt="" />
         <CiCirclePlus style={plusIconStyle} />
       </div>
+
       <div>
         <ElementName>Labels</ElementName>
 
-        <LabelSquare></LabelSquare>
-        <LabelSquare></LabelSquare>
-        <CiSquarePlus style={plusIconStyle} />
+        {task.labels.map((label) => {
+          return <LabelSquare labelColor={label} key={label}></LabelSquare>;
+        })}
+
+        <Labels>
+          <CiSquarePlus style={plusIconStyle} />
+        </Labels>
       </div>
+
       <div>
         <ElementName>Due date</ElementName>
         <Button additionalStyle={btnAdditionalStyle}>
@@ -60,6 +67,7 @@ function ControlBar() {
           Watch
         </Button>
       </div>
+
       <div>
         <ElementName>Notifications</ElementName>
         <Button additionalStyle={btnAdditionalStyle}>

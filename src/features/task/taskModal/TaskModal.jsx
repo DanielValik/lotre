@@ -64,7 +64,7 @@ function OpenedTaskModal({
 
         <Row style={{ marginLeft: "50px" }}>
           <Content>
-            <ControlBar />
+            <ControlBar task={task} />
           </Content>
         </Row>
 

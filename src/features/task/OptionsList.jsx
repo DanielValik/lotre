@@ -12,6 +12,7 @@ import { IoTime } from "react-icons/io5";
 import { GiMirrorMirror } from "react-icons/gi";
 import styled from "styled-components";
 import Button from "../../ui/Button";
+import Labels from "./Labels";
 
 const StyledOptionsList = styled.div`
   position: absolute;
@@ -35,7 +36,11 @@ const additionalStylesButton = {
 function OptionsList({ task, closeOptionsList, setIsModalOpen }) {
   const options = [
     { icon: <FaIdCard />, label: "Open Task", onClick: handleOpenTask },
-    { icon: <FaEdit />, label: "Edit labels", onClick: handleClick },
+    {
+      icon: <FaEdit />,
+      label: "Edit labels",
+      onClick: handleClick,
+    },
     { icon: <FaUser />, label: "Change members", onClick: handleClick },
     { icon: <FaRegImage />, label: "Change cover", onClick: handleClick },
     { icon: <IoTime />, label: "Edit dates", onClick: handleClick },
@@ -46,9 +51,7 @@ function OptionsList({ task, closeOptionsList, setIsModalOpen }) {
     { icon: <FaArchive />, label: "Archive", onClick: handleClick },
   ];
 
-  function handleClick() {
-    console.log("Button clicked");
-  }
+  function handleClick() {}
 
   function handleOpenTask() {
     setIsModalOpen(true);
@@ -58,7 +61,26 @@ function OptionsList({ task, closeOptionsList, setIsModalOpen }) {
   return (
     <>
       <StyledOptionsList>
-        {options.map((option) => (
+        <Button
+          additionalStyle={additionalStylesButton}
+          onClick={handleOpenTask}
+        >
+          <IconWrapper>
+            <FaIdCard />
+          </IconWrapper>
+          Open Task
+        </Button>
+
+        <Labels>
+          <Button additionalStyle={additionalStylesButton}>
+            <IconWrapper>
+              <FaEdit />
+            </IconWrapper>
+            Edit labels
+          </Button>
+        </Labels>
+
+        {/* {options.map((option) => (
           <Button
             additionalStyle={additionalStylesButton}
             onClick={option.onClick}
@@ -67,7 +89,7 @@ function OptionsList({ task, closeOptionsList, setIsModalOpen }) {
             <IconWrapper>{option.icon}</IconWrapper>
             {option.label}
           </Button>
-        ))}
+        ))} */}
       </StyledOptionsList>
     </>
   );
