@@ -13,8 +13,14 @@ const ActivityInfo = styled.p`
   font-size: 12px;
 `;
 
-const ActionWrapper = styled.div`
-  display: inline-block;
+const MessageWrapper = styled.div`
+  margin-top: 7px;
+  gap: 0 5px;
+`;
+const Username = styled.strong`
+  font-size: 15px;
+  display: block;
+  margin-bottom: 7px;
 `;
 
 const fakeActivity = [
@@ -43,13 +49,15 @@ function Activity({ Row, Icon, Content }) {
 
   useEffect(
     function () {
-      fakeActivity.push({
-        id: fakeActivity.length + 1,
-        user: fakeCurrentUser.username,
-        action: message,
-        date: "1 marca 2025, 4:00 PM",
-      });
-
+      console.log(message);
+      if (message.trim() !== "") {
+        fakeActivity.push({
+          id: fakeActivity.length + 1,
+          user: fakeCurrentUser.username,
+          action: message,
+          date: "1 marca 2025, 4:00 PM",
+        });
+      }
       setMessage("");
     },
     [message, setMessage]
@@ -70,19 +78,21 @@ function Activity({ Row, Icon, Content }) {
       </Row>
 
       {fakeActivity.map((activity) => (
-        <Row key={activity.id}>
-          <StyledAvatar src="../../../../public/fakeUserAvatar.png" alt="" />
+        <MessageWrapper key={activity.id}>
+          <Row>
+            <StyledAvatar src="../../../../public/fakeUserAvatar.png" alt="" />
 
-          <Content>
-            <strong>{activity.user}</strong>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(activity.action),
-              }}
-            ></span>
-            <ActivityInfo>{activity.date}</ActivityInfo>
-          </Content>
-        </Row>
+            <Content>
+              <Username>{activity.user}</Username>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(activity.action),
+                }}
+              ></span>
+              <ActivityInfo>{activity.date}</ActivityInfo>
+            </Content>
+          </Row>
+        </MessageWrapper>
       ))}
     </>
   );

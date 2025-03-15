@@ -1,12 +1,11 @@
-import { FaRegCheckCircle, FaRegCircle, FaRegEye } from "react-icons/fa";
+import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 import styled from "styled-components";
-import Button from "../../../ui/Button";
-import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Description from "./Description";
 import { FaListCheck } from "react-icons/fa6";
 import Activity from "./Activity";
 import { LuText } from "react-icons/lu";
+import ControlBar from "./ControlBar";
 
 const StyledTaskModal = styled.div`
   display: flex;
@@ -30,11 +29,6 @@ const Content = styled.div`
   max-width: 500px;
   line-height: 0.7;
 `;
-
-const btnAdditionalStyle = {
-  display: "flex",
-  gap: "8px",
-};
 
 function OpenedTaskModal({
   task,
@@ -70,11 +64,7 @@ function OpenedTaskModal({
 
         <Row style={{ marginLeft: "50px" }}>
           <Content>
-            <p style={{ fontSize: "13px" }}>Notifications</p>
-            <Button additionalStyle={btnAdditionalStyle}>
-              <FaRegEye />
-              Watch
-            </Button>
+            <ControlBar />
           </Content>
         </Row>
 

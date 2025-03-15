@@ -7,7 +7,7 @@ import useDarkenBackground from "../../hooks/useDarkBackground";
 import OptionsList from "./OptionsList";
 import useClickOutside from "../../hooks/useClickOutside";
 import Modal from "../../ui/Modal";
-import OpenedTaskModal from "./taskModalMenu/OpenedTaskModal";
+import OpenedTaskModal from "./taskModal/TaskModal";
 
 const StyledTask = styled.div`
   display: flex;
@@ -129,7 +129,12 @@ function Task({ task, cardName }) {
               />
             )}
 
-            <span>{taskName}</span>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => setIsModalOpen(true)}
+            >
+              {taskName}
+            </span>
           </div>
 
           <div>

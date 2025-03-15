@@ -1,3 +1,4 @@
 export const fakeCurrentUser = {
-  username: "fakeuser",
+  id: 1,
+  username: "fakeCurrent",
 };
