@@ -25,6 +25,15 @@ const LabelSquare = styled.div`
   border-radius: 5px;
   background-color: ${(props) => props.labelColor || "black"};
   margin-right: 5px;
+  filter: contrast(0.7);
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+
+  &:focus {
+    border: 3px solid var(--white);
+  }
 `;
 
 const btnAdditionalStyle = {
@@ -51,11 +60,11 @@ function ControlBar({ task }) {
       <div>
         <ElementName>Labels</ElementName>
 
-        {task.labels.map((label) => {
+        {task.activeLabels.map((label) => {
           return <LabelSquare labelColor={label} key={label}></LabelSquare>;
         })}
 
-        <Labels>
+        <Labels task={task}>
           <CiSquarePlus style={plusIconStyle} />
         </Labels>
       </div>

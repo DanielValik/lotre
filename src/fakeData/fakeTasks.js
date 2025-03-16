@@ -3,7 +3,7 @@ export const tasks = [
     id: 1,
     name: "Task 1",
     isCompleted: false,
-    labels: ["red", "blue", "green"],
+    activeLabels: ["red", "blue", "green"],
   },
   {
     id: 2,
