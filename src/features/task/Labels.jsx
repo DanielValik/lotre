@@ -40,7 +40,6 @@ const CloseButton = styled.button`
   background: none;
   cursor: pointer;
 `;
-s;
 
 const Title = styled.h3`
   text-align: center;
@@ -58,6 +57,13 @@ const LabelRow = styled.div`
 `;
 
 const LabelElement = styled.div`
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  font-size: 12px;
+
   width: 180px;
   height: 25px;
   background-color: ${(props) => props.color};
@@ -76,6 +82,8 @@ function Labels({ children, task }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
   const labelsRef = useRef(null);
+  const [toggleCreateEditLabel, setToggleCreateEditLabel] = useState(false);
+  const [editableLabel, setEditableLabel] = useState(null);
 
   function handleClick(e) {
     if (!containerRef.current) return;
@@ -89,38 +97,61 @@ function Labels({ children, task }) {
     setIsOpen(true);
   }
 
-  useClickOutside(labelsRef, () => {
+  useClickOutside(labelsRef, () => handleClose());
+
+  function handleClose() {
     setIsOpen(false);
-  });
+    setToggleCreateEditLabel(false);
+  }
+
+  function handleEditLabel(label) {
+    setToggleCreateEditLabel(true);
+    setEditableLabel(label);
+  }
 
   return (
     <Container ref={containerRef}>
       <OpenLabelsButton onClick={handleClick}>{children}</OpenLabelsButton>
-      {isOpen && (
-        <StyledLabels ref={labelsRef} x={position.x - 40} y={position.y - 40}>
-          <CloseButton onClick={() => setIsOpen(false)}>
-            <IoClose />
-          </CloseButton>
-          <Title>Labels</Title>
-          <ContentWrapper>
-            <Input placeholder={"Search labels..."} />
+      {isOpen &&
+        (!toggleCreateEditLabel ? (
+          <StyledLabels ref={labelsRef} x={position.x - 40} y={position.y - 40}>
+            <CloseButton onClick={() => handleClose()}>
+              <IoClose />
+            </CloseButton>
+            <Title>Labels</Title>
+            <ContentWrapper>
+              <Input placeholder={"Search labels..."} />
 
-            {fakeCard.labels.map((label) => (
-              <LabelRow key={label.color}>
-                {label.isActive ? (
-                  <MdOutlineCheckBox />
-                ) : (
-                  <MdOutlineCheckBoxOutlineBlank />
-                )}
-                <LabelElement color={label.color} />
-                <FaPencil />
-              </LabelRow>
-            ))}
+              {fakeCard.labels.map((label) => (
+                <LabelRow key={label.color}>
+                  {label.isActive ? (
+                    <MdOutlineCheckBox />
+                  ) : (
+                    <MdOutlineCheckBoxOutlineBlank />
+                  )}
+                  <LabelElement color={label.color}>
+                    {label.description}
+                  </LabelElement>
+                  <FaPencil onClick={() => handleEditLabel(label)} />
+                </LabelRow>
+              ))}
 
-            <Button>Create new label</Button>
-          </ContentWrapper>
-        </StyledLabels>
-      )}
+              <Button>Create new label</Button>
+            </ContentWrapper>
+          </StyledLabels>
+        ) : (
+          <StyledLabels ref={labelsRef} x={position.x - 40} y={position.y - 40}>
+            <CloseButton onClick={() => handleClose()}>
+              <IoClose />
+            </CloseButton>
+
+            <ContentWrapper>
+              <Input value={editableLabel.description} />
+
+              <Button>Save changes</Button>
+            </ContentWrapper>
+          </StyledLabels>
+        ))}
     </Container>
   );
 }

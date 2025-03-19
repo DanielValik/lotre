@@ -9,8 +9,14 @@ const StyledInput = styled.input`
   }
 `;
 
-function Input({ placeholder }) {
-  return <StyledInput type="text" placeholder={placeholder}></StyledInput>;
+function Input({ value, placeholder }) {
+  return (
+    <StyledInput
+      type="text"
+      value={value}
+      placeholder={placeholder}
+    ></StyledInput>
+  );
 }
 
 export default Input;
