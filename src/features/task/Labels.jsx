@@ -10,6 +10,7 @@ import {
 import { FaPencil } from "react-icons/fa6";
 import { fakeCard } from "../../fakeData/fakeCard";
 import Button from "../../ui/Button";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Container = styled.div`
   display: inline-block;
@@ -36,6 +37,15 @@ const CloseButton = styled.button`
   position: absolute;
   top: 12px;
   right: 7px;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  top: 12px;
+  left: 7px;
   border: none;
   background: none;
   cursor: pointer;
@@ -71,6 +81,30 @@ const LabelElement = styled.div`
   border-radius: 5px;
   margin: 0 10px;
   transition: filter 0.3s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+`;
+
+const SelectedColor = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: var(--hover);
+  margin: 20px 0 10px 0;
+  padding: 20px 0;
+`;
+
+const PalitraElement = styled.div`
+  width: 50px;
+  height: 20px;
+  background-color: ${(props) => props.color};
+  filter: contrast(0.7);
+  border-radius: 5px;
+  transition: filter 0.3s;
+
+  margin: 0 5px;
+  cursor: pointer;
 
   &:hover {
     filter: brightness(0.7);
@@ -125,14 +159,19 @@ function Labels({ children, task }) {
               {fakeCard.labels.map((label) => (
                 <LabelRow key={label.color}>
                   {label.isActive ? (
-                    <MdOutlineCheckBox />
+                    <MdOutlineCheckBox style={{ cursor: "pointer" }} />
                   ) : (
-                    <MdOutlineCheckBoxOutlineBlank />
+                    <MdOutlineCheckBoxOutlineBlank
+                      style={{ cursor: "pointer" }}
+                    />
                   )}
                   <LabelElement color={label.color}>
                     {label.description}
                   </LabelElement>
-                  <FaPencil onClick={() => handleEditLabel(label)} />
+                  <FaPencil
+                    onClick={() => handleEditLabel(label)}
+                    style={{ cursor: "pointer" }}
+                  />
                 </LabelRow>
               ))}
 
@@ -141,14 +180,62 @@ function Labels({ children, task }) {
           </StyledLabels>
         ) : (
           <StyledLabels ref={labelsRef} x={position.x - 40} y={position.y - 40}>
+            <BackButton onClick={() => setToggleCreateEditLabel(false)}>
+              <IoIosArrowBack />
+            </BackButton>
+            <Title>Edit label</Title>
             <CloseButton onClick={() => handleClose()}>
               <IoClose />
             </CloseButton>
 
+            <SelectedColor>
+              <LabelElement color={editableLabel.color} />
+            </SelectedColor>
+
             <ContentWrapper>
               <Input value={editableLabel.description} />
 
-              <Button>Save changes</Button>
+              <LabelRow>
+                <PalitraElement color="darkred"></PalitraElement>
+                <PalitraElement color="red"></PalitraElement>
+                <PalitraElement color="tomato"></PalitraElement>
+                <PalitraElement color="orange"></PalitraElement>
+                <PalitraElement color="gold"></PalitraElement>
+              </LabelRow>
+
+              <LabelRow>
+                <PalitraElement color="yellow"></PalitraElement>
+                <PalitraElement color="greenyellow"></PalitraElement>
+                <PalitraElement color="lime"></PalitraElement>
+                <PalitraElement color="green"></PalitraElement>
+                <PalitraElement color="darkgreen"></PalitraElement>
+              </LabelRow>
+
+              <LabelRow>
+                <PalitraElement color="teal"></PalitraElement>
+                <PalitraElement color="cyan"></PalitraElement>
+                <PalitraElement color="deepskyblue"></PalitraElement>
+                <PalitraElement color="blue"></PalitraElement>
+                <PalitraElement color="darkblue"></PalitraElement>
+              </LabelRow>
+
+              <LabelRow>
+                <PalitraElement color="navy"></PalitraElement>
+                <PalitraElement color="indigo"></PalitraElement>
+                <PalitraElement color="purple"></PalitraElement>
+                <PalitraElement color="darkmagenta"></PalitraElement>
+                <PalitraElement color="violet"></PalitraElement>
+              </LabelRow>
+
+              <LabelRow>
+                <PalitraElement color="brown"></PalitraElement>
+                <PalitraElement color="saddlebrown"></PalitraElement>
+                <PalitraElement color="gray"></PalitraElement>
+                <PalitraElement color="silver"></PalitraElement>
+                <PalitraElement color="white"></PalitraElement>
+              </LabelRow>
+
+              <Button>Save </Button>
             </ContentWrapper>
           </StyledLabels>
         ))}
