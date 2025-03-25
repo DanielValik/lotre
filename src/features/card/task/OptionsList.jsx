@@ -11,7 +11,7 @@ import {
 import { IoTime } from "react-icons/io5";
 import { GiMirrorMirror } from "react-icons/gi";
 import styled from "styled-components";
-import Button from "../../ui/Button";
+import Button from "../../../ui/Button";
 import Labels from "./Labels";
 
 const StyledOptionsList = styled.div`

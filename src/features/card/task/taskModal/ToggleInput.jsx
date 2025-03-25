@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import TrixInput from "../../../ui/TrixInput";
+import TrixInput from "../../../../ui/TrixInput";
 import DOMPurify from "dompurify";
 
 const LabelButton = styled.div`

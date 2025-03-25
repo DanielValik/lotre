@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { FaEdit, FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 import styled from "styled-components";
-import ControlledInput from "../../ui/ControlledInput";
-import Button from "../../ui/Button";
-import useDarkenBackground from "../../hooks/useDarkBackground";
+import ControlledInput from "../../../ui/ControlledInput";
+import Button from "../../../ui/Button";
+import useDarkenBackground from "../../../hooks/useDarkBackground";
 import OptionsList from "./OptionsList";
-import useClickOutside from "../../hooks/useClickOutside";
-import Modal from "../../ui/Modal";
+import useClickOutside from "../../../hooks/useClickOutside";
+import Modal from "../../../ui/Modal";
 import OpenedTaskModal from "./taskModal/TaskModal";
 
 const StyledTask = styled.div`

@@ -1,15 +1,15 @@
 import React, { useRef, useState } from "react";
-import useClickOutside from "../../hooks/useClickOutside";
+import useClickOutside from "../../../hooks/useClickOutside";
 import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
-import Input from "../../ui/Input";
+import Input from "../../../ui/Input";
 import {
   MdOutlineCheckBox,
   MdOutlineCheckBoxOutlineBlank,
 } from "react-icons/md";
 import { FaPencil } from "react-icons/fa6";
-import { fakeCard } from "../../fakeData/fakeCard";
-import Button from "../../ui/Button";
+import { fakeCard } from "../../../fakeData/fakeCard";
+import Button from "../../../ui/Button";
 import { IoIosArrowBack } from "react-icons/io";
 
 const Container = styled.div`

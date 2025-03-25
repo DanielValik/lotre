@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fakeCurrentUser } from "../../../fakeData/fakeCurrentUser";
+import { fakeCurrentUser } from "../../../../fakeData/fakeCurrentUser";
 import ToggleInput from "./ToggleInput";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";

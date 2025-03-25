@@ -1,5 +1,5 @@
 import { FaRegEye } from "react-icons/fa";
-import Button from "../../../ui/Button";
+import Button from "../../../../ui/Button";
 import styled from "styled-components";
 import { CiCirclePlus, CiSquarePlus } from "react-icons/ci";
 import Labels from "../Labels";

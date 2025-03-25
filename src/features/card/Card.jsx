@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { RiCollapseDiagonal2Line } from "react-icons/ri";
 import { SlOptionsVertical } from "react-icons/sl";
-import Task from "../task/Task";
+import Task from "./task/Task";
 import { FaPlus, FaRegCircle } from "react-icons/fa";
 import Button from "../../ui/Button";
 import ControlledInput from "../../ui/ControlledInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { tasks } from "../../fakeData/fakeTasks";
+import useCards from "./useCards";
 
 const StyledCard = styled.div`
   background-color: #e1e1e1;
@@ -53,6 +54,8 @@ const MinimizedCard = styled.div`
 `;
 
 function Card() {
+  const { cards, isLoading, error } = useCards();
+  console.log(cards, isLoading, error);
   const [cardName, setCardName] = useState("Click to change card name");
   const [isEditingCardName, setIsEditingCardName] = useState(false);
 

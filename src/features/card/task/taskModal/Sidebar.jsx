@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../ui/Button";
+import Button from "../../../../ui/Button";
 import { IoImageOutline, IoPersonAddOutline } from "react-icons/io5";
 import { FiUsers } from "react-icons/fi";
 import { MdAccessTime, MdOutlineNewLabel } from "react-icons/md";
