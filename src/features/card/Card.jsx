@@ -7,7 +7,6 @@ import Button from "../../ui/Button";
 import ControlledInput from "../../ui/ControlledInput";
 import { useState } from "react";
 import { tasks } from "../../fakeData/fakeTasks";
-import useCards from "./useCards";
 
 const StyledCard = styled.div`
   background-color: #e1e1e1;
@@ -53,10 +52,10 @@ const MinimizedCard = styled.div`
   display: inline-block;
 `;
 
-function Card() {
-  const { cards, isLoading, error } = useCards();
-  console.log(cards, isLoading, error);
-  const [cardName, setCardName] = useState("Click to change card name");
+function Card({ card }) {
+  console.log(card);
+  console.log(card.tasks);
+  const [cardName, setCardName] = useState(card.name);
   const [isEditingCardName, setIsEditingCardName] = useState(false);
 
   function handleKeyDown(e) {
@@ -73,11 +72,11 @@ function Card() {
   const [newTask, setNewTask] = useState("");
 
   function handleAddTask(task) {
-    tasks.push({
-      id: Math.random(),
-      name: task,
-      isCompleted: false,
-    });
+    // tasks.push({
+    //   id: Math.random(),
+    //   name: task,
+    //   isCompleted: false,
+    // });
   }
 
   const [isMinimized, setIsMinimized] = useState(false);
@@ -119,7 +118,7 @@ function Card() {
       </CardHeader>
 
       <CardBody>
-        {tasks.map((task) => (
+        {card.tasks.map((task) => (
           <Task key={task.id} task={task} cardName={cardName} />
         ))}
         {isAddingTask && (
